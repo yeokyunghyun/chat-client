@@ -44,15 +44,15 @@
 
   
   "compilerOptions": {
-    "target": "ES2019",
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "outDir": "dist",
-    "esModuleInterop": true,
-    "strict": true,
-    "skipLibCheck": true
+    "target": "ES2019",          // 변환된 JS가 어떤 JS 버전으로 출력될지 설정 (Node 12+ 정도 호환)
+    "module": "commonjs",        // Node.js에서 기본적으로 사용하는 require() 방식 모듈 출력
+    "moduleResolution": "node",  // import 경로 해석 방식을 Node.js 방식으로 처리
+    "outDir": "dist",            // 컴파일된 JS 결과물이 저장될 폴더
+    "esModuleInterop": true,     // CommonJS 모듈을 ESModule처럼 import 가능하게 해줌 (import express from 'express')
+    "strict": true,              // 모든 엄격한 타입 체크 활성화 (타입 안정성 ↑)
+    "skipLibCheck": true         // @types 등 라이브러리의 d.ts 파일 타입 검사 생략 → 빌드 속도 ↑
   },
-  "include": ["src"]
+  "include": ["src"]             // src 폴더 내부만 타입 검사 및 컴파일 대상
 
 
 }

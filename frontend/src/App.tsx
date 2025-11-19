@@ -13,7 +13,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/agent" element={<MainPage />} />
+        <Route path="/client" element={<MainPage />} />
       </Routes>
     </BrowserRouter>
     </>
