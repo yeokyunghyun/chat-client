@@ -3,6 +3,10 @@ import express from "express";
 import { createServer } from "http";
 import { setSocketIOServer } from "./SocketIOServer";
 import router from "./router"
+import dotenv from "dotenv"
+
+const env = process.env.NODE_ENV || "local"; // 기본값 local
+dotenv.config({ path: path.join(process.cwd(), `.env.${env}`) });
 
 const app = express();
 const httpServer = createServer(app);
