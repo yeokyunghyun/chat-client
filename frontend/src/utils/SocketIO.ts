@@ -1,6 +1,6 @@
 import { io, Socket } from "socket.io-client";
 
-class SocketIO {
+class SocketIOService {
   private socket: Socket | null = null;
 
   connect() {
@@ -9,20 +9,33 @@ class SocketIO {
         autoConnect: false,
       });
       this.socket.connect();
-      console.log("Socket connected:", this.socket.id);
+
+      this.socket.on("connect", () => {
+        console.log("Socket connected:", this.socket?.id);
+      });
     }
   }
 
-  onMessage(callback: (msg: any) => void) {
+  emit(event: string, payload: any) {
     if (!this.socket) return;
-    this.socket.on("message", callback);
+    this.socket.emit(event, payload);
   }
 
-  sendMessage(payload: any) {
+  on(event: string, handler: (...args: any[]) => void) {
     if (!this.socket) return;
-    console.log('this.socket.id >>', this.socket.id);
-    this.socket.emit("message", payload);
+    this.socket.on(event, handler);
   }
+
+  // onMessage(callback: (msg: any) => void) {
+  //   if (!this.socket) return;
+  //   this.socket.on("message", callback);
+  // }
+
+  // sendMessage(payload: any) {
+  //   if (!this.socket) return;
+  //   console.log('this.socket.id >>', this.socket.id);
+  //   this.socket.emit("message", payload);
+  // }
 
   disconnect() {
     if (!this.socket) return;
@@ -31,4 +44,5 @@ class SocketIO {
   }
 }
 
-export default new SocketIO();
+const SocketIO = new SocketIOService();
+export default SocketIO;
