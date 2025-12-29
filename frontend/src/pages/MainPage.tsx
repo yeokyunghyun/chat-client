@@ -8,7 +8,6 @@ type MessageItem = string | { userId: string; content: string; [key: string]: an
 export type TreeNode = {
   id: string;
   title: string;
-  content: string;
   type: string;
   children?: TreeNode[];
 };
@@ -356,7 +355,6 @@ export default function MainPage() {
                 maxWidth: "75%",
                 position: "relative"
               }}>
-                {/* 말풍선: 안내 텍스트만 표시 */}
                 <div style={{
                   backgroundColor: "#ffffff",
                   color: "#1f2937",
@@ -367,121 +365,120 @@ export default function MainPage() {
                   boxShadow: "0 2px 8px rgba(0, 0, 0, 0.08)",
                   wordBreak: "break-word"
                 }}>
-                  <div style={{ fontWeight: "600" }}>
-                    {currentNode.content}
+                  <div style={{ marginBottom: "12px", fontWeight: "600" }}>
+                    {currentNode.title}
                   </div>
-                </div>
-
-                {/* 버튼 영역 (말풍선 아래) */}
-                <div style={{
-                  marginTop: "12px",
-                  display: "flex",
-                  flexDirection: "row",
-                  flexWrap: "wrap",
-                  gap: "8px"
-                }}>
-                  {/* 하위노드 버튼들 */}
-                  {currentNode.children && currentNode.children.length > 0 && (
-                    <>
-                      {currentNode.children.map((child) => {
-                        return (
-                          <button
-                            key={child.id}
-                            onClick={() => handleQuickButtonClick(child)}
-                            style={{
-                              padding: "12px 16px",
-                              fontSize: "14px",
-                              backgroundColor: "#6366f1",
-                              color: "#ffffff",
-                              border: "none",
-                              borderRadius: "8px",
-                              cursor: "pointer",
-                              fontWeight: "500",
-                              transition: "all 0.2s",
-                              textAlign: "left",
-                              boxShadow: "0 2px 4px rgba(99, 102, 241, 0.2)"
-                            }}
-                            onMouseEnter={(e) => {
-                              e.currentTarget.style.backgroundColor = "#4f46e5";
-                              e.currentTarget.style.transform = "translateY(-1px)";
-                              e.currentTarget.style.boxShadow = "0 4px 8px rgba(99, 102, 241, 0.3)";
-                            }}
-                            onMouseLeave={(e) => {
-                              e.currentTarget.style.backgroundColor = "#6366f1";
-                              e.currentTarget.style.transform = "translateY(0)";
-                              e.currentTarget.style.boxShadow = "0 2px 4px rgba(99, 102, 241, 0.2)";
-                            }}
-                          >
-                            {child.title}
-                          </button>
-                        );
-                      })}
-                    </>
-                  )}
                   
-                  {/* 네비게이션 버튼 */}
-                  {navigationStack.length > 0 && (
-                    <>
-                      <button
-                        onClick={handleGoBack}
-                        style={{
-                          padding: "12px 16px",
-                          fontSize: "14px",
-                          backgroundColor: "#6366f1",
-                          color: "#ffffff",
-                          border: "none",
-                          borderRadius: "8px",
-                          cursor: "pointer",
-                          fontWeight: "500",
-                          transition: "all 0.2s",
-                          boxShadow: "0 2px 4px rgba(99, 102, 241, 0.2)"
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.backgroundColor = "#4f46e5";
-                          e.currentTarget.style.transform = "translateY(-1px)";
-                          e.currentTarget.style.boxShadow = "0 4px 8px rgba(99, 102, 241, 0.3)";
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.backgroundColor = "#6366f1";
-                          e.currentTarget.style.transform = "translateY(0)";
-                          e.currentTarget.style.boxShadow = "0 2px 4px rgba(99, 102, 241, 0.2)";
-                        }}
-                      >
-                        이전으로
-                      </button>
-                      <button
-                        onClick={handleGoHome}
-                        style={{
-                          padding: "12px 16px",
-                          fontSize: "14px",
-                          backgroundColor: "#6366f1",
-                          color: "#ffffff",
-                          border: "none",
-                          borderRadius: "8px",
-                          cursor: "pointer",
-                          fontWeight: "500",
-                          transition: "all 0.2s",
-                          boxShadow: "0 2px 4px rgba(99, 102, 241, 0.2)"
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.backgroundColor = "#4f46e5";
-                          e.currentTarget.style.transform = "translateY(-1px)";
-                          e.currentTarget.style.boxShadow = "0 4px 8px rgba(99, 102, 241, 0.3)";
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.backgroundColor = "#6366f1";
-                          e.currentTarget.style.transform = "translateY(0)";
-                          e.currentTarget.style.boxShadow = "0 2px 4px rgba(99, 102, 241, 0.2)";
-                        }}
-                      >
-                        처음으로
-                      </button>
-                    </>
-                  )}
-                  
-                  {(!currentNode.children || currentNode.children.length === 0) && navigationStack.length === 0 && (
-                    <p style={{ color: "#666", margin: 0 }}>선택 가능한 항목이 없습니다.</p>
-                  )}
+                  {/* 버튼 영역 (하위노드 + 네비게이션 버튼) */}
+                  <div style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    flexWrap: "wrap",
+                    gap: "8px"
+                  }}>
+                    {/* 하위노드 버튼들 */}
+                    {currentNode.children && currentNode.children.length > 0 && (
+                      <>
+                        {currentNode.children.map((child) => {
+                          return (
+                            <button
+                              key={child.id}
+                              onClick={() => handleQuickButtonClick(child)}
+                              style={{
+                                padding: "12px 16px",
+                                fontSize: "14px",
+                                backgroundColor: "#6366f1",
+                                color: "#ffffff",
+                                border: "none",
+                                borderRadius: "8px",
+                                cursor: "pointer",
+                                fontWeight: "500",
+                                transition: "all 0.2s",
+                                textAlign: "left",
+                                boxShadow: "0 2px 4px rgba(99, 102, 241, 0.2)"
+                              }}
+                              onMouseEnter={(e) => {
+                                e.currentTarget.style.backgroundColor = "#4f46e5";
+                                e.currentTarget.style.transform = "translateY(-1px)";
+                                e.currentTarget.style.boxShadow = "0 4px 8px rgba(99, 102, 241, 0.3)";
+                              }}
+                              onMouseLeave={(e) => {
+                                e.currentTarget.style.backgroundColor = "#6366f1";
+                                e.currentTarget.style.transform = "translateY(0)";
+                                e.currentTarget.style.boxShadow = "0 2px 4px rgba(99, 102, 241, 0.2)";
+                              }}
+                            >
+                              {child.title}
+                            </button>
+                          );
+                        })}
+                      </>
+                    )}
+                    
+                    {/* 네비게이션 버튼 */}
+                    {navigationStack.length > 0 && (
+                      <>
+                        <button
+                          onClick={handleGoBack}
+                          style={{
+                            padding: "12px 16px",
+                            fontSize: "14px",
+                            backgroundColor: "#6366f1",
+                            color: "#ffffff",
+                            border: "none",
+                            borderRadius: "8px",
+                            cursor: "pointer",
+                            fontWeight: "500",
+                            transition: "all 0.2s",
+                            boxShadow: "0 2px 4px rgba(99, 102, 241, 0.2)"
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.backgroundColor = "#4f46e5";
+                            e.currentTarget.style.transform = "translateY(-1px)";
+                            e.currentTarget.style.boxShadow = "0 4px 8px rgba(99, 102, 241, 0.3)";
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.backgroundColor = "#6366f1";
+                            e.currentTarget.style.transform = "translateY(0)";
+                            e.currentTarget.style.boxShadow = "0 2px 4px rgba(99, 102, 241, 0.2)";
+                          }}
+                        >
+                          이전으로
+                        </button>
+                        <button
+                          onClick={handleGoHome}
+                          style={{
+                            padding: "12px 16px",
+                            fontSize: "14px",
+                            backgroundColor: "#6366f1",
+                            color: "#ffffff",
+                            border: "none",
+                            borderRadius: "8px",
+                            cursor: "pointer",
+                            fontWeight: "500",
+                            transition: "all 0.2s",
+                            boxShadow: "0 2px 4px rgba(99, 102, 241, 0.2)"
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.backgroundColor = "#4f46e5";
+                            e.currentTarget.style.transform = "translateY(-1px)";
+                            e.currentTarget.style.boxShadow = "0 4px 8px rgba(99, 102, 241, 0.3)";
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.backgroundColor = "#6366f1";
+                            e.currentTarget.style.transform = "translateY(0)";
+                            e.currentTarget.style.boxShadow = "0 2px 4px rgba(99, 102, 241, 0.2)";
+                          }}
+                        >
+                          처음으로
+                        </button>
+                      </>
+                    )}
+                    
+                    {(!currentNode.children || currentNode.children.length === 0) && navigationStack.length === 0 && (
+                      <p style={{ color: "#666", margin: 0 }}>선택 가능한 항목이 없습니다.</p>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
