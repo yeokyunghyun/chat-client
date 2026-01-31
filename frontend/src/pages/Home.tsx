@@ -94,138 +94,41 @@ export default function Home() {
           flexDirection: "column",
           padding: "40px 32px",
           overflowY: "auto",
-          position: "relative"
+          position: "relative",
+          minHeight: 0
         }}>
-          {/* 좌우 사이드 영역 */}
+          {/* 중앙 아이콘 - 화면 정가운데 고정 */}
           <div style={{
+            flex: 1,
             display: "flex",
-            width: "100%",
-            height: "100%",
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            pointerEvents: "none"
+            justifyContent: "center",
+            alignItems: "center",
+            minHeight: 0
           }}>
-            {/* 왼쪽 사이드 */}
             <div style={{
-              flex: 1,
+              width: "180px",
+              height: "180px",
+              borderRadius: "50%",
+              background: "linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%)",
               display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
               alignItems: "center",
-              gap: "20px",
-              padding: "20px"
+              justifyContent: "center"
             }}>
-              <div style={{
-                width: "80px",
-                height: "80px",
-                borderRadius: "50%",
-                background: "linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "32px"
-              }}>💬</div>
-              <div style={{
-                width: "60px",
-                height: "60px",
-                borderRadius: "50%",
-                background: "linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(139, 92, 246, 0.08) 100%)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "24px",
-                marginTop: "20px"
-              }}>✨</div>
-            </div>
-
-            {/* 중앙 콘텐츠 */}
-            <div style={{
-              width: "300px",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "32px"
-            }}>
-              {/* 귀여운 캐릭터 */}
-              <div style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center"
-              }}>
-                <svg
-                  width="200"
-                  height="200"
-                  viewBox="0 0 200 200"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  {/* 얼굴 */}
-                  <circle cx="100" cy="100" r="70" fill="#FFE5B4" stroke="#FFD700" strokeWidth="2"/>
-                  
-                  {/* 왼쪽 눈 */}
-                  <circle cx="80" cy="85" r="8" fill="#333"/>
-                  <circle cx="82" cy="83" r="3" fill="#fff"/>
-                  
-                  {/* 오른쪽 눈 */}
-                  <circle cx="120" cy="85" r="8" fill="#333"/>
-                  <circle cx="122" cy="83" r="3" fill="#fff"/>
-                  
-                  {/* 볼 홍조 */}
-                  <ellipse cx="70" cy="100" rx="12" ry="8" fill="#FFB6C1" opacity="0.6"/>
-                  <ellipse cx="130" cy="100" rx="12" ry="8" fill="#FFB6C1" opacity="0.6"/>
-                  
-                  {/* 입 */}
-                  <path d="M 85 115 Q 100 125 115 115" stroke="#333" strokeWidth="3" fill="none" strokeLinecap="round"/>
-                  
-                  {/* 귀 */}
-                  <ellipse cx="50" cy="60" rx="15" ry="25" fill="#FFE5B4" stroke="#FFD700" strokeWidth="2"/>
-                  <ellipse cx="150" cy="60" rx="15" ry="25" fill="#FFE5B4" stroke="#FFD700" strokeWidth="2"/>
-                  
-                  {/* 귀 안쪽 */}
-                  <ellipse cx="50" cy="60" rx="8" ry="12" fill="#FFB6C1" opacity="0.5"/>
-                  <ellipse cx="150" cy="60" rx="8" ry="12" fill="#FFB6C1" opacity="0.5"/>
-                  
-                  {/* 안테나 (선택사항) */}
-                  <circle cx="100" cy="30" r="8" fill="#6366f1"/>
-                  <line x1="100" y1="30" x2="100" y2="50" stroke="#6366f1" strokeWidth="3"/>
-                </svg>
-              </div>
-            </div>
-
-            {/* 오른쪽 사이드 */}
-            <div style={{
-              flex: 1,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-              gap: "20px",
-              padding: "20px"
-            }}>
-              <div style={{
-                width: "80px",
-                height: "80px",
-                borderRadius: "50%",
-                background: "linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "32px"
-              }}>📞</div>
-              <div style={{
-                width: "60px",
-                height: "60px",
-                borderRadius: "50%",
-                background: "linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(139, 92, 246, 0.08) 100%)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "24px",
-                marginTop: "20px"
-              }}>🌟</div>
+              <svg
+                width="100"
+                height="100"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+                  stroke="#6366f1"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </div>
           </div>
 
